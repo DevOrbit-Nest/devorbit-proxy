@@ -18,12 +18,15 @@ $ch = curl_init($APPS_SCRIPT_URL);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // 👈 This is the fix
 $response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
 header("Access-Control-Allow-Origin: $ALLOWED_ORIGIN");
 header("Content-Type: application/json");
 echo $response;
+
 
 
 
