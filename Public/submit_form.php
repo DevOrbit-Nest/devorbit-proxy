@@ -21,17 +21,10 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
 $response = curl_exec($ch);
 curl_close($ch);
 
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-// Debug output (temporarily)
-file_put_contents("debug.txt", "HTTP $httpCode\n$response");
-
-// Return response
 header("Access-Control-Allow-Origin: $ALLOWED_ORIGIN");
 header("Content-Type: application/json");
 echo $response;
+
 
 
 
